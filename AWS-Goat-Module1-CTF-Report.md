@@ -26,7 +26,7 @@ The findings are presented in the order they were discovered, each building on d
 
 ## Vulnerability 1: Reflected Cross-Site Scripting (XSS)
 
-**Severity:** Medium
+**Severity:** Medium   
 **Location:** Homepage search bar — `/prod/react#/home`
 
 ### Description
@@ -56,7 +56,7 @@ An attacker can execute arbitrary JavaScript in a victim's browser session. This
 
 ## Vulnerability 2: SQL/NoSQL Injection → Full User Data Disclosure
 
-**Severity:** Critical
+**Severity:** Critical   
 **Location:** `POST /v1/search-author` (User dashboard search)
 
 ### Description
@@ -103,7 +103,7 @@ Full disclosure of all user PII (names, emails, phone numbers, addresses, secret
 
 ## Vulnerability 3: Insecure Direct Object Reference (IDOR) → Account Takeover
 
-**Severity:** Critical
+**Severity:** Critical   
 **Location:** `POST /v1/change-password` (Profile page)
 
 ### Description
@@ -143,7 +143,7 @@ Complete account takeover of any user — including administrator-tier accounts 
 
 ## Vulnerability 4: Server-Side Request Forgery (SSRF) → Local File Disclosure
 
-**Severity:** Critical
+**Severity:** Critical   
 **Location:** **New Post** page — "Enter URL of image" field, backed by `GET /v1/save-content?value=<url>`
 
 ### Description
@@ -179,7 +179,7 @@ The backend performs server-side fetches of user-supplied URLs without validatin
 
 ## Vulnerability 5: SSRF → Lambda Credential Theft → Direct DynamoDB Access & Forged Admin Account
 
-**Severity:** Critical
+**Severity:** Critical   
 **Location:** Chained from the `GET /v1/save-content?value=<url>` SSRF endpoint, pivoting to the AWS CLI against the account's DynamoDB tables
 
 ### Description
@@ -244,7 +244,7 @@ This chains SSRF into full cloud credential theft and direct database compromise
 
 ## Vulnerability 6: Public S3 Bucket → SSH Key Leak → IAM Privilege Escalation → Full AWS Account Takeover
 
-**Severity:** Critical
+**Severity:** Critical   
 **Location:** Publicly listable S3 bucket `dev-blog-awsgoat-bucket-291461994497`, chained with SSH access to an EC2 instance and the Lambda credentials stolen in Vulnerability 5
 
 ### Description
